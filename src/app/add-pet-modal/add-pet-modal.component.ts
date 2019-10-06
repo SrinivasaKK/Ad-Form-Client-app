@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ToastrService } from "ngx-toastr";
 import { HttpClient } from "@angular/common/http";
 import { ApiEndPoint } from "./../constants/api";
+import { Router } from "@angular/router";
 @Component({
   selector: "app-add-pet-modal",
   templateUrl: "./add-pet-modal.component.html",
@@ -19,6 +20,7 @@ export class AddPetModalComponent implements OnInit {
     private formBuilder: FormBuilder,
     private http: HttpClient,
     private api: ApiEndPoint,
+    private router: Router,
     private toastr: ToastrService
   ) {}
 
@@ -43,9 +45,9 @@ export class AddPetModalComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
-    //this.registerForm.value.id = this.id;
-    this.registerForm.value.ownedBy = this.id;
-
+    this.registerForm.value.id = this.id;
+    this.registerForm.value.ownedBy = this.id.toString();
+    this.registerForm.value.age = this.registerForm.value.age.toString();
     this.http
       .post(`${this.api.endPoint}/pets`, this.registerForm.value)
       .subscribe(
@@ -55,6 +57,7 @@ export class AddPetModalComponent implements OnInit {
           });
 
           this.activeModal.close();
+          this.router.navigateByUrl("/");
         },
         err => {
           this.activeModal.close();

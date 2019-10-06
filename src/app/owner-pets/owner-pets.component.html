@@ -28,14 +28,16 @@
       </div>
     </div>
   </div>
-  <h2
-    class="text-center"
-    *ngIf="error || this.pets == undefined"
-    style="padding-top: 5rem"
-  >
-    No pets available
-  </h2>
-
+  <div *ngIf="error || this.pets == undefined" class="text-center">
+    <h2 style="padding-top: 5rem">
+      No pets available for this owner
+    </h2>
+    <div>
+      <button (click)="createNewPet()" class="btn btn-primary">
+        Create New Pet For this Owner
+      </button>
+    </div>
+  </div>
   <div class="pt-1 fixed-bottom">
     <button class="btn btn-block btn-info" (click)="goBack()">
       Back

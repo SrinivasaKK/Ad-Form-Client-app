@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router, ActivatedRoute } from "@angular/router";
 import { UpdateModalComponent } from "../update-modal/update-modal.component";
+import { AddPetModalComponent } from "./../add-pet-modal/add-pet-modal.component";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ApiEndPoint } from "./../constants/api";
 @Component({
@@ -47,6 +48,12 @@ export class OwnerPetsComponent implements OnInit {
     modalRef.componentInstance.pet = pet;
   }
 
+  createNewPet() {
+    const modalRef = this.modalService.open(AddPetModalComponent, {
+      size: "lg"
+    });
+    modalRef.componentInstance.id = this.id;
+  }
   goBack() {
     this.router.navigateByUrl("/");
   }
