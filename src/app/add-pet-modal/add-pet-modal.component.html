@@ -1,0 +1,119 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Pet Details</h4>
+  <button
+    type="button"
+    class="close"
+    aria-label="Close"
+    (click)="activeModal.dismiss()"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="jumbotron">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h3>Add Pet Details</h3>
+          <form [formGroup]="registerForm" (ngSubmit)="add()">
+            <div class="form-group">
+              <label>Name</label>
+              <input
+                type="text"
+                formControlName="name"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.name.errors }"
+                ngModel
+              />
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">
+                  Pet Name is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Pet Type</label>
+              <select
+                [ngClass]="{ 'is-invalid': submitted && f.breed.errors }"
+                class="form-control"
+                formControlName="type"
+                ngModel
+              >
+                <option value="cat">cat</option>
+                <option value="dog">dog</option>
+              </select>
+              <div *ngIf="submitted && f.type.errors" class="invalid-feedback">
+                <div>
+                  Pet type is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Breed</label>
+              <input
+                type="text"
+                formControlName="breed"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.breed.errors }"
+                ngModel
+              />
+              <div *ngIf="submitted && f.breed.errors" class="invalid-feedback">
+                <div *ngIf="f.breed.errors.required">Breed is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>color</label>
+              <input
+                type="text"
+                formControlName="color"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && f.color.errors }"
+                ngModel
+              />
+              <div *ngIf="submitted && f.color.errors" class="invalid-feedback">
+                <div *ngIf="f.color.errors.required">
+                  color is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Age</label>
+              <input
+                type="number"
+                formControlName="age"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': submitted && f.age.errors
+                }"
+                ngModel
+              />
+              <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+                <div *ngIf="f.age.errors.required">
+                  Age is required
+                </div>
+                <div *ngIf="f.age.errors.max">
+                  Please enter age between 1 and 50
+                </div>
+                <div *ngIf="f.age.errors.min">
+                  Please enter age between 1 and 50
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary">Add</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button
+    type="button"
+    class="btn btn-outline-dark"
+    (click)="activeModal.close()"
+  >
+    Cancel
+  </button>
+</div>

@@ -1,0 +1,47 @@
+<div class="container-fluid img">
+  <nav
+    class="shadow-sm rounded navbar fixed-top navbar-expand-sm bg-light justify-content-center"
+  >
+    <ul class="navbar-nav">
+      <li class="nav-item"></li>
+      <li class="nav-item">
+        <h3 class="nav-link">Pet Shop</h3>
+      </li>
+      <li class="nav-item"></li>
+    </ul>
+  </nav>
+  <!-- <div style="padding-top: 7rem" class="row">
+    <button class="btn btn-block btn-primary" (click)="viewAllOwners()">
+      View Pet Owners
+    </button>
+  </div> -->
+  <div style="padding-top:7rem" class="row mb-4 pl-5">
+    <div class="col-md-4" *ngFor="let owner of owners">
+      <div class="card bg-light mb-3" style="width: 18rem;">
+        <div class="card-header font-weight-bold text-success">
+          {{ owner.name }}
+        </div>
+        <div class="card-body">
+          <h6 class="card-subtitle mb-2 text-dark">{{ owner.phone }}</h6>
+          <h6 class="card-subtitle mb-2 text-dark">{{ owner.email }}</h6>
+          <p class="card-text">{{ owner.address }}</p>
+          <button (click)="viewOwnerPet(owner.id)" class="btn btn-primary">
+            View Pets
+          </button>
+
+          <button (click)="createNewPet(owner.id)" class="btn ml-1 btn-primary">
+            Create New Pet
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h2 *ngIf="error" style="padding-top: 5rem">
+    Owners not available
+  </h2>
+  <div class="fixed-bottom">
+    <button class="btn btn-block btn-info" (click)="viewAllPets()">
+      View All Pets
+    </button>
+  </div>
+</div>
